@@ -9,7 +9,7 @@ export const MovieProvider = ({ children }) => {
   async function fetchMoviesFromDb() {
     try {
       setLoading(true);
-      const res = await axios.get("movies.jsn");
+      const res = await axios.get("movies.json");
 
       setLoading(false);
       return res.data;
@@ -21,12 +21,15 @@ export const MovieProvider = ({ children }) => {
 
   const groupByGenres = async () => {
     try {
-      const res = await axios.get("movies.jsn");
+      const res = await axios.get("movies.json");
+      // const movies = groupByGenres(res, "genres");
+      // console.log(movies);
+      // return movies;
     } catch (error) {
       throw error;
     }
   };
-  const values = { fetchMoviesFromDb, allMoviesLoading };
+  const values = { fetchMoviesFromDb, allMoviesLoading, groupByGenres };
   return (
     <MovieContext.Provider value={values}>{children}</MovieContext.Provider>
   );
