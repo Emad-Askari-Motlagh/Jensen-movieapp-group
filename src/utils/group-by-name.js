@@ -1,5 +1,5 @@
 const groupedByGenre = (array, name) => {
-  const result = array.reduce((acc, movie) => {
+  return array.reduce((acc, movie) => {
     // Split genre by comma and trim each genre to remove whitespace
     const genres = movie[name].split(",").map((genre) => genre.trim());
 
@@ -15,6 +15,5 @@ const groupedByGenre = (array, name) => {
 
     return acc;
   }, {});
-  return result;
 };
 export { groupedByGenre };
