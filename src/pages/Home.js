@@ -1,12 +1,13 @@
-import Loading from "components";
+import Loading from "components/Loading";
 import Info from "components/Info";
 import useMovie from "hooks/useMovie";
 import React, { useEffect, useState } from "react";
 
 export default function Home() {
-  const { fetchMoviesFromDb, allMoviesLoading } = useMovie();
+  const { fetchMoviesFromDb, allMoviesLoading, groupByGenres } = useMovie();
   const [fetchMoviesError, setFetchMoviesError] = useState("");
   const [movies, setMovies] = useState([]);
+
   useEffect(() => {
     async function fetchMovies() {
       try {
@@ -18,9 +19,6 @@ export default function Home() {
     }
     fetchMovies();
   }, []);
-  useEffect(() => {
-    console.log("eee", fetchMoviesError);
-  }, [fetchMoviesError]);
 
   return (
     <div>
@@ -30,8 +28,8 @@ export default function Home() {
           <ul>
             {allMoviesLoading && <Loading></Loading>}
             {movies?.length > 0 &&
-              movies.map((res) => {
-                return <li>{res?.title}</li>;
+              movies.map((res, i) => {
+                return <li key={i}>{res?.title}</li>;
               })}
           </ul>
         </div>
