@@ -1,72 +1,85 @@
+
 .header {
-  $font_color: #e7e1e1;
-  height: 80px;
+  background: url("../../../public/images/home-bg.jpg") top left/cover no-repeat;
+  padding: 30px 50px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: space-around;
-  position: relative;
-  background-color: #383838;
-  .material-symbols-outlined {
-    font-size: 44px;
-    border-width: 0.3px;
-  }
-  li,
-  a {
-    transition: transform 0.3s ease-in-out;
-  }
-  .logo {
-    margin-right: 1rem;
-    margin: auto;
-    img {
-      width: 80px;
-    }
-  }
-  nav {
-    position: relative;
-  }
+  margin-bottom: 175px;
+}
 
-  .nav--row {
+.logo {
+  height: 32px;
+  width: 108px;
+}
+
+.nav--row {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    margin: auto;
+    text-decoration: none;
+  }
 
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+  li {
+    margin-right: 1rem;
+    cursor: pointer;
 
-      li {
-        margin-right: 1rem;
-        cursor: pointer;
+    a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
 
-        &:hover {
-          transform: scale(1.05);
-        }
+      &.nav--hidden--mobile {
+        font-weight: bold !important;
+        text-transform: uppercase !important;
+      }
 
-        a {
-          color: $font-color;
-          text-decoration: none;
-          font-size: 15px;
-        }
-        .login-nav-link {
-          background-color: #282828;
-          color: whitesmoke;
-          padding: 0.4rem 1.4rem;
-          border-radius: 40px;
-          width: 20%;
-          text-decoration: none;
-        }
+      &.login-nav-link {
+        background-color: #e50914 !important;
+        color: #fff !important;
+        padding: 0.4rem 1.4rem !important;
+        border-radius: 3px !important;
+        text-decoration: none !important;
       }
     }
   }
-  .nav--column {
-    flex-direction: column;
-    display: none;
-    position: absolute;
-    right: 0;
+}
+
+
+/* Media Query for screens with a maximum width of 550px */
+@media (max-width: 550px) {
+  .header {
+    padding: 15px 20px;
+    margin-bottom: 100px;
+  }
+
+  .logo {
+    height: 24px;
+    width: 80px;
+  }
+
+  .nav--row {
+    ul {
+      li {
+        margin-right: 0.5rem;
+
+        a {
+          font-size: 14px;
+
+          &.nav--hidden--mobile {
+            font-weight: bold;
+            text-transform: uppercase;
+          }
+
+          &.login-nav-link {
+            padding: 0.3rem 1rem;
+            font-size: 14px;
+          }
+        }
+      }
+    }
   }
 }
