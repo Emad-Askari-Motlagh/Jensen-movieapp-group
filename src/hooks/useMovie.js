@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { groupedByGenre } from "utils/group-by-name";
 
 export const MovieContext = createContext(undefined);
 
@@ -21,11 +22,15 @@ export const MovieProvider = ({ children }) => {
 
   const groupByGenres = async () => {
     try {
-      const res = await axios.get("movies.json");
-      // const movies = groupByGenres(res, "genres");
-      // console.log(movies);
-      // return movies;
+      setLoading(true);
+      const moviesData = await axios.get("movies.json");
+      const res = groupedByGenre(moviesData.data, "genre");
+      console.log(res);
+      setLoading(false);
+      return res;
     } catch (error) {
+      setLoading(false);
+      console.log(error);
       throw error;
     }
   };

@@ -1,19 +1,20 @@
-import Loading from "components/Loading";
 import Info from "components/Info";
 import useMovie from "hooks/useMovie";
 import React, { useEffect, useState } from "react";
+import MovieCollection from "components/MovieCollection";
 
 export default function Home() {
   const { fetchMoviesFromDb, allMoviesLoading, groupByGenres } = useMovie();
   const [fetchMoviesError, setFetchMoviesError] = useState("");
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState({});
 
   useEffect(() => {
     async function fetchMovies() {
       try {
-        const res = await fetchMoviesFromDb();
-        setMovies([...res]);
+        const res = await groupByGenres();
+        setMovies({ ...res });
       } catch (error) {
+        console.log(error);
         setFetchMoviesError("Unexpected error");
       }
     }
@@ -25,15 +26,19 @@ export default function Home() {
       <h1>Movies</h1>
       <div>
         <div>
-          <ul>
-            {allMoviesLoading && <Loading></Loading>}
-            {movies?.length > 0 &&
-              movies.map((res, i) => {
-                return <li key={i}>{res?.title}</li>;
-              })}
-          </ul>
+          {Object.entries(movies).map((collection) => {
+            console.log(collection);
+            return (
+              <MovieCollection
+                movies={collection[1]}
+                collectionName={collection[0]}
+                allMoviesLoading={allMoviesLoading}
+              />
+            );
+          })}
+
+          {fetchMoviesError && <Info type="error">{fetchMoviesError}</Info>}
         </div>
-        {fetchMoviesError && <Info type="error">{fetchMoviesError}</Info>}
       </div>
     </div>
   );
