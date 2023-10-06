@@ -1,7 +1,10 @@
 const groupedByGenre = (array, name) => {
+  const genres = [];
+  array.map((res) => {
+    genres.push(res.genre);
+  });
   return array.reduce((acc, movie) => {
     // Split genre by comma and trim each genre to remove whitespace
-    const genres = movie[name].split(",").map((genre) => genre.trim());
 
     genres.forEach((genre) => {
       // If the genre is not yet a key in the accumulator, create it with an empty array

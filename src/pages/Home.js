@@ -2,6 +2,7 @@ import Info from "components/Info";
 import useMovie from "hooks/useMovie";
 import React, { useEffect, useState } from "react";
 import MovieCollection from "components/MovieCollection";
+import FirstPageMovie from "components/FirstPageMovie";
 
 export default function Home() {
   const { fetchMoviesFromDb, allMoviesLoading, groupByGenres } = useMovie();
@@ -23,7 +24,10 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Movies</h1>
+      <FirstPageMovie
+        title="God Father"
+        src="https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_QL75_UY562_CR8,0,380,562_.jpg"
+      />
       <div>
         <div>
           {Object.entries(movies).map((collection) => {
