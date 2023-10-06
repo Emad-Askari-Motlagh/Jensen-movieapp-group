@@ -11,7 +11,7 @@ export const MovieProvider = ({ children }) => {
     try {
       setLoading(true);
       const res = await axios.get("movies.json");
-
+      console.log(res);
       setLoading(false);
       return res.data;
     } catch (error) {
@@ -25,7 +25,7 @@ export const MovieProvider = ({ children }) => {
       setLoading(true);
       const moviesData = await axios.get("movies.json");
       const res = groupedByGenre(moviesData.data, "genre");
-      console.log(res);
+
       setLoading(false);
       return res;
     } catch (error) {
