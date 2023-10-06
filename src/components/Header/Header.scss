@@ -1,11 +1,11 @@
 .header {
-  $font_color: #e7e1e1;
+  $font_color: #383838;
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-around;
   position: relative;
-  background-color: #383838;
+  color: #282828;
   .material-symbols-outlined {
     font-size: 44px;
     border-width: 0.3px;
@@ -13,6 +13,8 @@
   li,
   a {
     transition: transform 0.3s ease-in-out;
+    color: #282828;
+    font-weight: 700;
   }
   .logo {
     margin-right: 1rem;

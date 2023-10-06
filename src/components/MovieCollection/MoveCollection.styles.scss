@@ -2,9 +2,9 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-    background: linear-gradient(178.6deg, rgb(20, 36, 50) 11.8%, rgb(124, 143, 161) 83.8%);
+    background: radial-gradient(#ebebeb, #282828);
+
     h3 {
-        color: rgba(163, 120, 112, 0.76);
         padding-left: 30px;
         font-size: 27px;
         text-decoration: underline;
@@ -13,6 +13,7 @@
     .slider-content {
         display: flex;
         transition: transform 300ms ease;
+        box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 
         .movie {
             min-width: 300px;
@@ -21,6 +22,7 @@
             width: 300px;
             height: 200px;
             list-style: none;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
             &__image {
                 margin: 5px;
                 object-fit: fill;
@@ -35,10 +37,9 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        font-size: 2em;
+        font-size: 3em;
         cursor: pointer;
-        z-index: 2;
-        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 200;
         color: white;
 
         &.slider-btn-left {
