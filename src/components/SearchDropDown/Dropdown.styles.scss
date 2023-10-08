@@ -1,0 +1,14 @@
+.search-dropdown {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: auto;
+    &__title {
+        font-weight: 500;
+    }
+    img {
+        width: 40px;
+        margin: 4px;
+    }
+}
