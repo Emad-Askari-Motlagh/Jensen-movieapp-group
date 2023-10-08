@@ -40,7 +40,6 @@ export const MovieProvider = ({ children }) => {
       const res = await getALlMovies();
 
       const movie = res.find((m) => {
-        console.log(m?.title, title);
         if (m) {
           if (m.title) {
             return m.title === title;
