@@ -10,6 +10,7 @@ import {
 
 import PrimaryLayout from "./components/Layout";
 import Home from "./pages/Home";
+import Movie from "pages/Movie";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route element={<PrimaryLayout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/movies/:movie" element={<Movie />} />
           <Route path="*" element={<p>There's nothing here: 404!</p>} />
         </Route>
       </Routes>

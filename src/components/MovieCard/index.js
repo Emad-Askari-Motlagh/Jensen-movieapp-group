@@ -1,7 +1,12 @@
-import React from 'react'
+import React from "react";
+import "./MovieCard.styles.scss";
 
-export default function MovieCard() {
+export default function MovieCard({ onClick, movie, index }) {
   return (
-    <div>MovieCard</div>
-  )
+    <div key={index}>
+      <li onClick={() => onClick(movie.title)} className="movie">
+        <img className="movie__image" src={movie.thumbnail} alt={movie.title} />
+      </li>
+    </div>
+  );
 }

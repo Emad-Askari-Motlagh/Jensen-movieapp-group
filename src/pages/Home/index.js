@@ -5,15 +5,14 @@ import MovieCollection from "components/MovieCollection";
 import FirstPageMovie from "components/FirstPageMovie";
 
 const movieSample = {
-  title: "The Godfather",
+  title: "Your favorite movie destination to watch top movies",
   year: 1972,
   rating: "R",
   actors: ["Marlon Brando", "Al Pacino", "James Caan"],
   genre: "Crime, Drama",
   synopsis:
     "Don Vito Corleone, head of a mafia family, decides to hand over his empire to his youngest son Michael. However, his decision unintentionally puts the lives of his loved ones in grave danger.",
-  thumbnail:
-    "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_QL75_UY562_CR8,0,380,562_.jpg",
+  thumbnail: "dataset-cover.webp",
 };
 
 export default function Home() {
