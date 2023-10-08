@@ -7,6 +7,20 @@
     list-style: none;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    &__label {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transform: translate(5%, -15%);
+        backdrop-filter: blur(2px);
+        padding: 4px;
+    }
+    &:hover {
+        transform: scale(1.03);
+        box-shadow: rgba(123, 173, 224, 0.2) 0px 8px 24px;
+    }
     &__image {
         margin: 5px;
         object-fit: fill;

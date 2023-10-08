@@ -3,6 +3,7 @@ import useMovie from "hooks/useMovie";
 import React, { useEffect, useState } from "react";
 import MovieCollection from "components/MovieCollection";
 import FirstPageMovie from "components/FirstPageMovie";
+import Loading from "components/Loading";
 
 const movieSample = {
   title: "Your favorite movie destination to watch top movies",
@@ -16,7 +17,7 @@ const movieSample = {
 };
 
 export default function Home() {
-  const { fetchMoviesFromDb, allMoviesLoading, groupByGenres } = useMovie();
+  const { allMoviesLoading, groupByGenres } = useMovie();
   const [fetchMoviesError, setFetchMoviesError] = useState("");
   const [movies, setMovies] = useState({});
   const [randomMovie, setRandomMovie] = useState(movieSample);
@@ -50,7 +51,7 @@ export default function Home() {
               />
             );
           })}
-
+          {allMoviesLoading && <Loading />}
           {fetchMoviesError && <Info type="error">{fetchMoviesError}</Info>}
         </div>
       </div>
