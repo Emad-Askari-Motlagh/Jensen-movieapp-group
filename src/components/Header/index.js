@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Header.scss";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { SiThemoviedatabase } from "react-icons/si";
 
 const Header = () => {

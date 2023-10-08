@@ -1,9 +1,12 @@
 import React, { useRef, useState } from "react";
 import "./MoveCollection.styles.scss";
 import { BiCategory } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
+import MovieCard from "components/MovieCard";
 
 export default function MovieCollection({ movies, collectionName }) {
   const sliderRef = useRef(null);
+  const navigate = useNavigate();
   const [currentTransform, setCurrentTransform] = useState(0);
   const scroll = (direction) => {
     if (direction === "left") {
@@ -16,6 +19,10 @@ export default function MovieCollection({ movies, collectionName }) {
       );
     }
   };
+
+  function onClick(endPoint) {
+    navigate(`/movies/${endPoint}`);
+  }
   return (
     <div className="category-slider">
       <div>
@@ -38,13 +45,7 @@ export default function MovieCollection({ movies, collectionName }) {
             ref={sliderRef}
             style={{ transform: `translateX(${currentTransform}vw)` }}>
             {movies.map((movie, index) => (
-              <li className="movie" key={index} style={{ width: "100vw" }}>
-                <img
-                  className="movie__image"
-                  src={movie.thumbnail}
-                  alt={movie.title}
-                />
-              </li>
+              <MovieCard movie={movie} onClick={onClick} index={index} />
             ))}
           </ul>
           <div className="slider-btn-right" onClick={() => scroll("right")}>
