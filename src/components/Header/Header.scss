@@ -5,7 +5,23 @@
   align-items: center;
   justify-content: space-around;
   position: relative;
-
+  .dropdown {
+    box-shadow:
+      rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+      rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    padding: 10px;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 500px;
+    background-color: rgba(86, 82, 82, 0.222);
+    border-radius: 30px;
+  }
   .material-symbols-outlined {
     font-size: 44px;
     border-width: 0.3px;
@@ -50,15 +66,31 @@
       li {
         margin-right: 1rem;
         cursor: pointer;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .searcgh-icon {
+          &:hover {
+            transform: scale(1.05);
 
-        &:hover {
-          transform: scale(1.05);
+            color: tomato;
+          }
         }
-
+        .search {
+          position: absolute;
+          top: 0;
+          right: 0;
+          transform: translate(0, 100%);
+          z-index: 200;
+        }
         a {
           color: $font-color;
           text-decoration: none;
           font-size: 15px;
+          &:hover {
+            transform: scale(1.05);
+          }
         }
         .login-nav-link {
           background-color: #282828;

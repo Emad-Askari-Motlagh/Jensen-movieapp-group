@@ -7,7 +7,8 @@ export const MovieContext = createContext(undefined);
 
 export const MovieProvider = ({ children }) => {
   const [allMoviesLoading, setLoading] = useState(false);
-
+  const [choosedMovie, setChoosedMovie] = useState({});
+  const [filteredMovies, setFilteredMovies] = useState([]);
   async function fetchMoviesFromDb() {
     try {
       setLoading(true);
@@ -50,8 +51,23 @@ export const MovieProvider = ({ children }) => {
           throw new Error("Movie doesnt exist");
         }
       });
-      console.log(movie);
+      setChoosedMovie(movie);
       return movie;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const searchMoviesByName = async (title) => {
+    try {
+      const res = await getALlMovies();
+
+      const movies = res.filter((m) => {
+        return m.title?.toLowerCase().includes(title?.toLowerCase());
+      });
+      setFilteredMovies([...movies.slice(0, 5)]);
+
+      return movies;
     } catch (error) {
       throw error;
     }
@@ -61,6 +77,9 @@ export const MovieProvider = ({ children }) => {
     allMoviesLoading,
     groupByGenres,
     getMovieByName,
+    choosedMovie,
+    searchMoviesByName,
+    filteredMovies,
   };
   return (
     <MovieContext.Provider value={values}>{children}</MovieContext.Provider>

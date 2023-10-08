@@ -10,8 +10,8 @@ export default function Movie() {
   async function fetchMovie(title) {
     try {
       const fetchedResult = await getMovieByName(title);
-      console.log(fetchedResult);
-      setFetchedMovie({ ...fetchedResult });
+
+      setFetchedMovie({ ...fetchedResult.slice(5) });
     } catch (error) {
       console.log(error);
     }
