@@ -5,7 +5,10 @@ export default function FirstPageMovie({ src, title }) {
   return (
     <div className="first-page-movie-wrapper">
       <div className="info">
-        <label>{title}</label>
+        <h1 className="info__main-header">{title}</h1>
+        <h2 className="info__cecoundary-header">
+          A movie collection from all over the world
+        </h2>
       </div>
 
       <div>

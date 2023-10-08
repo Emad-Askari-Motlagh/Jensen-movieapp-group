@@ -2,14 +2,21 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-    background: radial-gradient(#ebebeb, #bab5b5);
-
-    h3 {
-        padding-left: 30px;
-        color: #383838;
-        font-size: 27px;
-        font-weight: 900;
+    &__name {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: inline-flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        padding-left: 1rem;
+        h3 {
+            font-size: 27px;
+            font-weight: 900;
+            margin-left: 5px;
+        }
     }
+
     .slider-content {
         display: flex;
         transition: transform 300ms ease;
@@ -43,13 +50,17 @@
         cursor: pointer;
         z-index: 200;
         color: white;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
 
         &.slider-btn-left {
-            left: 10px;
+            left: 20px;
+            position: absolute;
         }
 
         &.slider-btn-right {
-            right: 10px;
+            right: 20px;
         }
     }
 }
