@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Header.scss";
 import { NavLink } from "react-router-dom";
 import { SiThemoviedatabase } from "react-icons/si";
@@ -18,7 +18,16 @@ const Header = () => {
       await searchMoviesByName(value);
     }
   }
+  const inputRef = useRef(null);
 
+  // Function to focus on the input when the div loses focus
+  const handleBlur = () => {
+    setTimeout(() => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    }, 100);
+  };
   return (
     <header className="header">
       <div className="logo">
@@ -39,7 +48,10 @@ const Header = () => {
               <BiSearchAlt2
                 size={22}
                 className="search-icon"
-                onClick={() => setIsSearchVisible(!searchVisible)}
+                onClick={() => {
+                  setIsSearchVisible(!searchVisible);
+                  handleBlur();
+                }}
               />
               <div style={{ position: "relative" }}>
                 {searchVisible && (
@@ -48,6 +60,7 @@ const Header = () => {
                       label="Search movie"
                       onSearch={onSearch}
                       placeholder="Search movie"
+                      inputRef={inputRef}
                     />
                     <div className="dropdown">
                       {filteredMovies?.length > 0 &&
