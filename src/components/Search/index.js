@@ -13,11 +13,13 @@ export default function Search({
   label,
   theme,
   onSearch,
+  inputRef,
 }) {
   return (
     <div className={styles.container}>
       <FaSearchengin size={37} className={styles.icon} />
       <input
+        ref={inputRef}
         type={type}
         onChange={onSearch}
         className={styles.input}
