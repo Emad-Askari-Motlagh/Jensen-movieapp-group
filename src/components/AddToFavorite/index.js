@@ -1,6 +1,6 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
-import { useFavorites } from "../../hooks/useFavorites";
+import useFavorites from "../../hooks/useFavorites";
 import "./AddToFavorite.styles.scss";
 
 const AddToFavorites = ({ movie }) => {

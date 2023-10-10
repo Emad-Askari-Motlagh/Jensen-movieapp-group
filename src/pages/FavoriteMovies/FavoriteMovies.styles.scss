@@ -1,0 +1,43 @@
+.favorite-movies-wrapper {
+    .favorite-movies {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+
+        &__minus {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: rgb(146, 65, 65);
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: translate(50%, 50%);
+            &:hover {
+                background-color: tomato;
+                cursor: pointer;
+            }
+        }
+        li {
+            min-width: 300px;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .favorite-movies-wrapper {
+        .favorite-movies {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            li {
+                width: 100%;
+            }
+        }
+    }
+}

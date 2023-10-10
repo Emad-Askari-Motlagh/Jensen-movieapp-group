@@ -4,12 +4,13 @@ import { BiCategory } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import MovieCard from "components/MovieCard";
 import { v4 as uuidv4 } from "uuid";
+import useFavorites from "hooks/useFavorites";
 
 export default function MovieCollection({ movies, collectionName }) {
   const sliderRef = useRef(null);
   const navigate = useNavigate();
   const [currentTransform, setCurrentTransform] = useState(0);
-
+  const { addFavorite } = useFavorites();
   const scroll = (direction) => {
     if (direction === "left") {
       setCurrentTransform((prevTransform) => Math.min(prevTransform + 100, 0));
@@ -49,21 +50,21 @@ export default function MovieCollection({ movies, collectionName }) {
           <div className="slider-btn-left" onClick={() => scroll("left")}>
             &#10094;
           </div>
-          <ul
+          <div
             className="slider-content"
             ref={sliderRef}
             style={{ transform: `translateX(${currentTransform}vw)` }}
             aria-label={`Movies in ${collectionName}`}
-            role="list"
-          >
+            role="list">
             {uniqueMovies.map((movie) => (
               <MovieCard
                 key={uuidv4()} // Unikt id till varje child
                 movie={movie}
                 onClick={() => handleItemClick(movie.title)}
+                addFavorite={addFavorite}
               />
             ))}
-          </ul>
+          </div>
           <div className="slider-btn-right" onClick={() => scroll("right")}>
             &#10095;
           </div>
