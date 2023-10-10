@@ -45,6 +45,7 @@ export default function Home() {
           {Object.entries(movies).map((collection) => {
             return (
               <MovieCollection
+                key={collection[0]}
                 movies={collection[1]}
                 collectionName={collection[0]}
                 allMoviesLoading={allMoviesLoading}
