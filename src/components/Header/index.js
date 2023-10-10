@@ -6,7 +6,7 @@ import Search from "components/Search";
 import useMovie from "hooks/useMovie";
 import { BiSearchAlt2 } from "react-icons/bi";
 import SearchDropdown from "components/SearchDropDown";
-
+import { AiOutlineStar } from "react-icons/ai";
 const Header = () => {
   const { searchMoviesByName, filteredMovies } = useMovie();
   const [searchVisible, setIsSearchVisible] = useState(false);
@@ -69,9 +69,7 @@ const Header = () => {
 
           <li>
             <Link to="/favorites" className="link">
-              <span role="img" aria-label="Favorites">
-                ⭐️
-              </span>
+              <AiOutlineStar color="yellow" size={22} />
             </Link>
           </li>
 
