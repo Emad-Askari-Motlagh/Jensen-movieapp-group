@@ -1,0 +1,32 @@
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background: linear-gradient(to right, #9da8ae, #6d7470);
+    color: white;
+    cursor: pointer;
+    transition: all 0.4s;
+    text-decoration: none; // Useful if you use this style for anchor tags
+    outline: none; // Removes focus outline for better aesthetics
+    align-self: l;
+    justify-self: self-start;
+    margin-right: auto;
+
+    & > * {
+        margin-right: 6px;
+    }
+    &:hover {
+        transition: background 1s ease-in;
+        background-position: right;
+        background: linear-gradient(to left, #2d373d, #b0b6b3);
+    }
+}
+
+// If you also want an active state
+.button-wrpper:active {
+    transform: scale(0.98); // Slightly reduces the size to give a pressed effect
+}
