@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Header.scss";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { SiThemoviedatabase } from "react-icons/si";
 import Search from "components/Search";
 import useMovie from "hooks/useMovie";
@@ -43,7 +43,7 @@ const Header = () => {
   async function onSearch(e) {
     const value = e.target.value;
     setSearchWord(value);
-    if (searchWord) {
+    if (value) {
       await searchMoviesByName(value);
     }
   }
@@ -65,6 +65,21 @@ const Header = () => {
             <NavLink to="/" style={{ textDecoration: "none", color: "white" }}>
               Home
             </NavLink>
+          </li>
+
+          <li>
+            <Link
+              to="/favorites"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              <span
+                role="img"
+                aria-label="Favorites"
+                style={{ fontSize: "22px", cursor: "pointer" }}
+              >
+                ⭐️
+              </span>
+            </Link>
           </li>
 
           <li className="search-icon-container">

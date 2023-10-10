@@ -1,22 +1,23 @@
-const groupedByGenre = (array, name) => {
-  const genres = [];
-  array.map((res) => {
-    genres.push(res.genre);
+const groupedByGenre = (array) => {
+  const groupedMovies = {
+    trending: [],
+  };
+
+  array.forEach((movie) => {
+    if (movie.isTrending) {
+      groupedMovies.trending.push(movie);
+    } else {
+      movie.genre.split(",").forEach((genre) => {
+        const trimmedGenre = genre.trim();
+        if (!groupedMovies[trimmedGenre]) {
+          groupedMovies[trimmedGenre] = [];
+        }
+        groupedMovies[trimmedGenre].push(movie);
+      });
+    }
   });
-  return array.reduce((acc, movie) => {
-    // Split genre by comma and trim each genre to remove whitespace
 
-    genres.forEach((genre) => {
-      // If the genre is not yet a key in the accumulator, create it with an empty array
-      if (!acc[genre]) {
-        acc[genre] = [];
-      }
-
-      // Push the movie to the respective genre
-      acc[genre].push(movie);
-    });
-
-    return acc;
-  }, {});
+  return groupedMovies;
 };
+
 export { groupedByGenre };
