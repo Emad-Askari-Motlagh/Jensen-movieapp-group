@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Movie.styles.scss";
 import { useParams } from "react-router-dom";
 import useMovie from "hooks/useMovie";
+import AddToFavorites from "../../hooks/addToFavorite";
 
 export default function Movie() {
   const params = useParams();
@@ -11,7 +12,6 @@ export default function Movie() {
   async function fetchMovie(title) {
     try {
       const fetchedResult = await getMovieByName(title);
-
       setFetchedMovie(fetchedResult);
     } catch (error) {
       console.error(error);
@@ -34,7 +34,6 @@ export default function Movie() {
           <div>
             <h1>{fetchedMovie.title}</h1>
           </div>
-
           <div>
             <p>{fetchedMovie.synopsis}</p>
           </div>
@@ -48,6 +47,8 @@ export default function Movie() {
             <h2>Year:</h2>
             <span>{fetchedMovie.year}</span>
           </div>
+          {/* Use the AddToFavorites component */}
+          <AddToFavorites movie={fetchedMovie} />
         </div>
       </div>
       <div className="image-col">
