@@ -38,6 +38,7 @@ export default function Movie() {
 
       <div className="info-col">
         <MovieInfo fetchedMovie={fetchedMovie} />
+
         <MovieStatus fetchedMovie={fetchedMovie} />
       </div>
       <div className="image-col">

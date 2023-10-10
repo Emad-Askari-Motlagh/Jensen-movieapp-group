@@ -1,11 +1,30 @@
 .favorite-movies-wrapper {
+    width: 100%;
+    h1 {
+        text-align: center;
+    }
     .favorite-movies {
         display: flex;
         justify-content: space-around;
         align-items: center;
         flex-wrap: wrap;
 
+        &__item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem auto;
+            position: relative;
+            object-fit: cover;
+            background-color: #3838386d;
+            min-width: 500px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+            border-radius: 30px;
+            border: 2px solid gainsboro;
+            overflow: hidden;
+        }
         &__minus {
+            position: absolute;
             width: 20px;
             height: 20px;
             border-radius: 50%;
@@ -22,9 +41,6 @@
                 cursor: pointer;
             }
         }
-        li {
-            min-width: 300px;
-        }
     }
 }
 
@@ -32,11 +48,11 @@
     .favorite-movies-wrapper {
         .favorite-movies {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             align-items: center;
-            flex-wrap: wrap;
-            li {
-                width: 100%;
+
+            &__item {
+                margin: 10px auto;
             }
         }
     }
