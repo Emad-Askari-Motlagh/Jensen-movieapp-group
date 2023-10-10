@@ -50,33 +50,26 @@ const Header = () => {
 
   return (
     <header className="header">
-      <div className="logo">
-        <NavLink to="/" style={{ textDecoration: "none", color: "white" }}>
-          <SiThemoviedatabase className="logo__image" size={44} />
-          <span style={{ marginLeft: "9px", fontSize: "22px" }}>
-            JensenFlix
+      <NavLink to="/" style={{ textDecoration: "none", color: "white" }}>
+        <div className="logo">
+          <span className="logo__image">
+            <SiThemoviedatabase size={44} />
           </span>
-        </NavLink>
-      </div>
+          <span className="logo__label">JensenFlix</span>
+        </div>
+      </NavLink>
 
       <nav className="nav">
         <ul className="nav-list">
           <li>
-            <NavLink to="/" style={{ textDecoration: "none", color: "white" }}>
+            <NavLink className="link" to="/">
               Home
             </NavLink>
           </li>
 
           <li>
-            <Link
-              to="/favorites"
-              style={{ textDecoration: "none", color: "white" }}
-            >
-              <span
-                role="img"
-                aria-label="Favorites"
-                style={{ fontSize: "22px", cursor: "pointer" }}
-              >
+            <Link to="/favorites" className="link">
+              <span role="img" aria-label="Favorites">
                 ⭐️
               </span>
             </Link>
