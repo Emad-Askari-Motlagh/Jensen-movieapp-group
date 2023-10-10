@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useFavorites } from "../../hooks/favoriteContext";
+import { useFavorites } from "../../hooks/useFavorites";
 import MovieCard from "../../components/MovieCard/index";
 
 const FavoriteMovies = () => {
