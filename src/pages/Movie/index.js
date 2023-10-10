@@ -40,11 +40,11 @@ export default function Movie() {
         </div>
         <div className="dialog_status">
           <div>
-            <h2>Rating:</h2>
+            <h3>Rating:</h3>
             <span>{fetchedMovie.rating}</span>
           </div>
           <div>
-            <h2>Year:</h2>
+            <h3>Year:</h3>
             <span>{fetchedMovie.year}</span>
           </div>
           {/* Use the AddToFavorites component */}
