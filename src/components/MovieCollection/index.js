@@ -8,11 +8,12 @@ export default function MovieCollection({ movies, collectionName }) {
   const sliderRef = useRef(null);
   const navigate = useNavigate();
   const [currentTransform, setCurrentTransform] = useState(0);
+
   const scroll = (direction) => {
     if (direction === "left") {
       setCurrentTransform((prevTransform) => Math.min(prevTransform + 100, 0));
     } else {
-      // We limit the transform to ensure we don't scroll past the end
+      // gjorde så man inte scrollar förbi sista
       const maxTransform = -100 * (movies.length - 1);
       setCurrentTransform((prevTransform) =>
         Math.max(prevTransform - 100, maxTransform)
@@ -20,9 +21,10 @@ export default function MovieCollection({ movies, collectionName }) {
     }
   };
 
-  function onClick(endPoint) {
+  const onClick = (endPoint) => {
     navigate(`/movies/${endPoint}`);
-  }
+  };
+
   return (
     <div className="category-slider">
       <div>
@@ -43,9 +45,16 @@ export default function MovieCollection({ movies, collectionName }) {
           <ul
             className="slider-content"
             ref={sliderRef}
-            style={{ transform: `translateX(${currentTransform}vw)` }}>
-            {movies.map((movie, index) => (
-              <MovieCard movie={movie} onClick={onClick} index={index} />
+            style={{ transform: `translateX(${currentTransform}vw)` }}
+            aria-label={`Movies in ${collectionName}`}
+            role="list"
+          >
+            {movies.map((movie) => (
+              <MovieCard
+                key={movie.id} // ändrade så man använder en unik id som key
+                movie={movie}
+                onClick={onClick}
+              />
             ))}
           </ul>
           <div className="slider-btn-right" onClick={() => scroll("right")}>

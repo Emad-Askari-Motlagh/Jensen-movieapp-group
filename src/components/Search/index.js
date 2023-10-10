@@ -27,7 +27,8 @@ export default function Search({
         onFocus={onFocus}
         name={name}
         onBlur={onBlur}
-        onKeyDown={onKeyDown}></input>
+        onKeyDown={onKeyDown}
+      ></input>
     </div>
   );
 }
