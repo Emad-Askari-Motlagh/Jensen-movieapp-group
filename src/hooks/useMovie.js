@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import getALlMovies from "utils/getAllMovies";
-import { groupedByGenre } from "utils/group-by-name";
+import { groupedByGenre, groupedByGenre1 } from "utils/group-by-name";
 
 export const MovieContext = createContext(undefined);
 
@@ -9,6 +9,7 @@ export const MovieProvider = ({ children }) => {
   const [allMoviesLoading, setLoading] = useState(false);
   const [choosedMovie, setChoosedMovie] = useState({});
   const [filteredMovies, setFilteredMovies] = useState([]);
+
   async function fetchMoviesFromDb() {
     try {
       setLoading(true);
@@ -25,7 +26,7 @@ export const MovieProvider = ({ children }) => {
     try {
       setLoading(true);
       const moviesData = await getALlMovies();
-      const res = groupedByGenre(moviesData, "genre");
+      const res = groupedByGenre1(moviesData, "genre");
 
       setLoading(false);
       return res;

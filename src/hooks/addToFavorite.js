@@ -1,6 +1,6 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
-import { useFavorites } from "./favoriteContext";
+import { useFavorites } from "./useFavorites";
 
 const AddToFavorites = ({ movie }) => {
   const { addFavorite, removeFavorite, favorites } = useFavorites(); // Use useFavorites hook
