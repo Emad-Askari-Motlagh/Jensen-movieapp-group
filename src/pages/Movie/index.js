@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Movie.styles.scss";
 import { useParams } from "react-router-dom";
 import useMovie from "hooks/useMovie";
-import AddToFavorites from "../../hooks/addToFavorite";
+import AddToFavorites from "components/AddToFavorite";
 
 export default function Movie() {
   const params = useParams();

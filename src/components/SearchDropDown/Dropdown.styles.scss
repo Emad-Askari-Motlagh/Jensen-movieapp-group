@@ -4,6 +4,12 @@
     justify-content: flex-start;
     align-items: center;
     margin-right: auto;
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+    &:hover {
+        color: tomato;
+        text-decoration: underline;
+    }
     &__title {
         font-weight: 500;
     }
@@ -14,4 +20,4 @@
 }
 .body-hidden {
     overflow: hidden;
-  }
+}
