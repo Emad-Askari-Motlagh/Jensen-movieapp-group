@@ -6,14 +6,15 @@ import useMovie from "hooks/useMovie";
 export default function Movie() {
   const params = useParams();
   const { getMovieByName } = useMovie();
-  const [fetchedMOvie, setFetchedMovie] = useState({});
+  const [fetchedMovie, setFetchedMovie] = useState({});
+
   async function fetchMovie(title) {
     try {
       const fetchedResult = await getMovieByName(title);
 
-      setFetchedMovie({ ...fetchedResult.slice(5) });
+      setFetchedMovie(fetchedResult);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -21,22 +22,36 @@ export default function Movie() {
     if (params.movie) {
       fetchMovie(params.movie);
     }
-  }, [params]);
+  }, [params.movie]);
 
   return (
     <div className="movie-wrapper">
       <div className="info-col">
-        <div>
-          <span>GENRE: </span>
-          <span style={{ color: "red" }}>{fetchedMOvie.genre}</span>
+        <div className="dialog_content_text">
+          <div>
+            <p>Genre: {fetchedMovie.genre}</p>
+          </div>
+          <div>
+            <h1>{fetchedMovie.title}</h1>
+          </div>
+
+          <div>
+            <p>{fetchedMovie.synopsis}</p>
+          </div>
         </div>
-        <div>
-          <span>TITLE: </span>
-          <span style={{ color: "red" }}>{fetchedMOvie.title}</span>
+        <div className="dialog_status">
+          <div>
+            <h2>Rating:</h2>
+            <span>{fetchedMovie.rating}</span>
+          </div>
+          <div>
+            <h2>Year:</h2>
+            <span>{fetchedMovie.year}</span>
+          </div>
         </div>
       </div>
       <div className="image-col">
-        <img src={fetchedMOvie.thumbnail} alt={fetchedMOvie.title} />
+        <img src={fetchedMovie.thumbnail} alt={fetchedMovie.title} />
       </div>
     </div>
   );
