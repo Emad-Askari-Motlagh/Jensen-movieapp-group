@@ -1,36 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Dropdown.styles.scss";
-import Slider from "./slider";
 
-export default function SearchDropdown({ movie }) {
-  const [isSliderVisible, setIsSliderVisible] = useState(false);
+const SearchDropdown = ({ movie }) => {
+  const navigate = useNavigate();
 
-  const openSlider = () => {
-    setIsSliderVisible(true);
+  const handleClick = () => {
+    // Use the movie title or an appropriate identifier to construct the URL
+    const movieUrl = `/movies/${movie.title}`;
+    navigate(movieUrl);
   };
-
-  const closeSlider = () => {
-    setIsSliderVisible(false);
-  };
-
-  useEffect(() => {
-    if (isSliderVisible) {
-      document.body.classList.add("body-hidden");
-    } else {
-      document.body.classList.remove("body-hidden");
-    }
-
-    return () => {
-      document.body.classList.remove("body-hidden");
-    };
-  }, [isSliderVisible]);
 
   return (
-    <div className="search-dropdown">
-      <img src={movie?.thumbnail} alt={movie?.title} onClick={openSlider} />
+    <div className="search-dropdown" onClick={handleClick}>
+      <img src={movie?.thumbnail} alt={movie?.title} />
       <span className="search-dropdown__title">{movie?.title}</span>
-
-      {isSliderVisible && <Slider movie={movie} onClose={closeSlider} />}
     </div>
   );
-}
+};
+
+export default SearchDropdown;

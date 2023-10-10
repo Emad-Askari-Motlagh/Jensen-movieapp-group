@@ -3,6 +3,7 @@ import "./MoveCollection.styles.scss";
 import { BiCategory } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import MovieCard from "components/MovieCard";
+import SearchDropdown from "components/SearchDropDown/index";
 
 export default function MovieCollection({ movies, collectionName }) {
   const sliderRef = useRef(null);
@@ -13,7 +14,6 @@ export default function MovieCollection({ movies, collectionName }) {
     if (direction === "left") {
       setCurrentTransform((prevTransform) => Math.min(prevTransform + 100, 0));
     } else {
-      // gjorde så man inte scrollar förbi sista
       const maxTransform = -100 * (movies.length - 1);
       setCurrentTransform((prevTransform) =>
         Math.max(prevTransform - 100, maxTransform)
@@ -21,7 +21,8 @@ export default function MovieCollection({ movies, collectionName }) {
     }
   };
 
-  const onClick = (endPoint) => {
+  // Handle navigation when an item is clicked
+  const handleItemClick = (endPoint) => {
     navigate(`/movies/${endPoint}`);
   };
 
@@ -32,12 +33,10 @@ export default function MovieCollection({ movies, collectionName }) {
           <span>
             <BiCategory color="orange" size={33} />
           </span>
-
           <span>
             <h3>{collectionName}</h3>
           </span>
         </div>
-
         <div style={{ position: "relative" }}>
           <div className="slider-btn-left" onClick={() => scroll("left")}>
             &#10094;
@@ -50,11 +49,13 @@ export default function MovieCollection({ movies, collectionName }) {
             role="list"
           >
             {movies.map((movie) => (
-              <MovieCard
-                key={movie.id} // ändrade så man använder en unik id som key
-                movie={movie}
-                onClick={onClick}
-              />
+              <li
+                key={movie.id}
+                className="movie-card-item"
+                onClick={() => handleItemClick(movie.title)}
+              >
+                <SearchDropdown movie={movie} />
+              </li>
             ))}
           </ul>
           <div className="slider-btn-right" onClick={() => scroll("right")}>
