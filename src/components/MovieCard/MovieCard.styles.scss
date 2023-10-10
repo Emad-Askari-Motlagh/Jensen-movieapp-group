@@ -11,6 +11,17 @@
         transform 0.3s,
         box-shadow 0.2s ease-in-out;
     position: relative;
+    &__start {
+        color: yellow;
+        position: absolute;
+        right: 0;
+        top: 0;
+        transform: translate(-50%, 50%);
+        &:hover {
+            color: tomato;
+            cursor: pointer;
+        }
+    }
     &__label {
         position: absolute;
         bottom: 0;

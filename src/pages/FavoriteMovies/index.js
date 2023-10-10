@@ -1,34 +1,40 @@
 import React, { useState, useEffect } from "react";
-import { useFavorites } from "../../hooks/useFavorites";
+import "./FavoriteMovies.styles.scss";
+import useFavorites from "../../hooks/useFavorites";
 import MovieCard from "../../components/MovieCard/index";
+import Button from "components/Button";
+import { BiMinus } from "react-icons/bi";
 
 const FavoriteMovies = () => {
-  const { favorites, removeFavorite } = useFavorites();
+  const { removeFavorite, fetchFavorites, favorites } = useFavorites();
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   useEffect(() => {
-    setFavoritedMovies(favorites);
-  }, [favorites]);
-
-  const [favoritedMovies, setFavoritedMovies] = useState(favorites);
+    const res = fetchFavorites();
+    setFavoriteMovies([...res]);
+  }, []);
 
   const removeFromFavorites = (movieToRemove) => {
     removeFavorite(movieToRemove);
   };
+  useEffect(() => {
+    console.log(favorites);
+  }, [favorites]);
 
   return (
-    <div>
+    <div className="favorite-movies-wrapper">
       <h1>Favorited Movies</h1>
-      {favoritedMovies.length === 0 ? (
+      {favoriteMovies.length === 0 ? (
         <p>No movies in favorites.</p>
       ) : (
-        <ul>
-          {favoritedMovies.map((movie) => (
-            <li key={movie.title}>
+        <ul className="favorite-movies">
+          {favoriteMovies.map((movie, i) => (
+            <div key={i} style={{ color: "wheat", position: "relative" }}>
               <MovieCard movie={movie} />
-              <button onClick={() => removeFromFavorites(movie)}>
-                Remove from Favorites
-              </button>
-            </li>
+              <div className="favorite-movies__minus">
+                <BiMinus onClick={() => removeFromFavorites(movie)}></BiMinus>
+              </div>
+            </div>
           ))}
         </ul>
       )}
