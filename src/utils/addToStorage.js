@@ -5,7 +5,7 @@ export default function addToStorage(key, value) {
     if (!key || !value) {
       throw new Error("Invalid key");
     }
-    localStorage.setItem(key, value);
+    localStorage.setItem(key, JSON.stringify(value));
   } catch (error) {
     throw error;
   }

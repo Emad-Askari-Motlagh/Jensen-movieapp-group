@@ -15,6 +15,7 @@ const useFavorites = () => {
 export const FavoriteProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
   const [error, setError] = useState("");
+  const [edited, setIsEdited] = useState("");
 
   const fetchFavorites = () => {
     try {
@@ -37,12 +38,17 @@ export const FavoriteProvider = ({ children }) => {
           }
         });
         if (!isDuplicated) {
-          localStorage.setItem("favorites", JSON.stringify([...movies, movie]));
+          addToStorage("favorites", [...movies, movie]);
         }
       } else {
-        localStorage.setItem("favorites", JSON.stringify([movie]));
+        addToStorage("favorites", [movie]);
       }
+      setIsEdited(true);
+      setTimeout(() => {
+        setIsEdited(false);
+      }, 2000);
     } catch (error) {
+      setIsEdited(false);
       console.log(error);
       setError(error);
       return false;
@@ -50,9 +56,10 @@ export const FavoriteProvider = ({ children }) => {
   };
 
   const removeFavorite = (movie) => {
-    setFavorites((prevFavorites) =>
-      prevFavorites.filter((favMovie) => favMovie.title !== movie.title)
-    );
+    const fetchedMovies = FetchFromStorage("favorites");
+    const movies = fetchedMovies.filter((res) => res.title !== movie.title);
+    addToStorage("favorites", movies);
+    setFavorites([...movies]);
   };
   const values = {
     favorites,
@@ -60,6 +67,7 @@ export const FavoriteProvider = ({ children }) => {
     removeFavorite,
     error,
     fetchFavorites,
+    edited,
   };
   return (
     <FavoriteContext.Provider value={values}>
