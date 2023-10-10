@@ -1,5 +1,6 @@
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css);
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
 $button-padding: 0.4em 1em;
 $button-width: 80%;
 $button-border: 1px solid black;
@@ -13,8 +14,4 @@ body {
   background-image: $background;
   background-color: #040d12;
   color: #ffff;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
