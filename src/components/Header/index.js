@@ -11,16 +11,8 @@ const Header = () => {
   const { searchMoviesByName, filteredMovies } = useMovie();
   const [searchVisible, setIsSearchVisible] = useState(false);
   const [searchWord, setSearchWord] = useState("");
-  async function onSearch(e) {
-    const value = e.target.value;
-    setSearchWord(value);
-    if (searchWord) {
-      await searchMoviesByName(value);
-    }
-  }
   const inputRef = useRef(null);
 
-  // Function to focus on the input when the div loses focus
   const handleBlur = () => {
     setTimeout(() => {
       if (inputRef.current) {
@@ -28,55 +20,82 @@ const Header = () => {
       }
     }, 100);
   };
+
+  // Close the dropdown when clicking outside of it
+  useEffect(() => {
+    const handleDocumentClick = (e) => {
+      if (
+        searchVisible &&
+        !e.target.closest(".search") &&
+        !e.target.closest(".search-icon-container")
+      ) {
+        setIsSearchVisible(false);
+      }
+    };
+
+    document.addEventListener("click", handleDocumentClick);
+
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, [searchVisible]);
+
+  async function onSearch(e) {
+    const value = e.target.value;
+    setSearchWord(value);
+    if (searchWord) {
+      await searchMoviesByName(value);
+    }
+  }
+
   return (
     <header className="header">
       <div className="logo">
-        <SiThemoviedatabase color="orange" className="logo__image" size={44} />
-        <span style={{ marginLeft: "9px" }}>IMDB</span>
+        <NavLink to="/" style={{ textDecoration: "none", color: "white" }}>
+          <SiThemoviedatabase className="logo__image" size={44} />
+          <span style={{ marginLeft: "9px", fontSize: "22px" }}>
+            JensenFlix
+          </span>
+        </NavLink>
       </div>
 
-      <div className="nav--row">
-        <nav>
-          <ul>
-            <li>
-              <NavLink style={{ color: "#fff" }} to="/">
-                Home
-              </NavLink>
-            </li>
+      <nav className="nav">
+        <ul className="nav-list">
+          <li>
+            <NavLink to="/" style={{ textDecoration: "none", color: "white" }}>
+              Home
+            </NavLink>
+          </li>
 
-            <li>
-              <BiSearchAlt2
-                size={22}
-                className="search-icon"
-                onClick={() => {
-                  setIsSearchVisible(!searchVisible);
-                  handleBlur();
-                }}
-              />
-              <div style={{ position: "relative" }}>
-                {searchVisible && (
-                  <div className="search" style={{ width: "400px" }}>
-                    <Search
-                      label="Search movie"
-                      onSearch={onSearch}
-                      placeholder="Search movie"
-                      inputRef={inputRef}
-                    />
-                    <div className="dropdown">
-                      {filteredMovies?.length > 0 &&
-                        searchWord &&
-                        searchVisible &&
-                        filteredMovies?.map((movie, i) => {
-                          return <SearchDropdown movie={movie} key={i} />;
-                        })}
-                    </div>
-                  </div>
-                )}
+          <li className="search-icon-container">
+            <BiSearchAlt2
+              size={22}
+              className="search-icon"
+              onClick={() => {
+                setIsSearchVisible(!searchVisible);
+                handleBlur();
+              }}
+            />
+            {searchVisible && (
+              <div className="search" style={{ width: "400px" }}>
+                <Search
+                  label="Search movie"
+                  onSearch={onSearch}
+                  placeholder="Search movie"
+                  inputRef={inputRef}
+                />
+                <div className="dropdown">
+                  {filteredMovies?.length > 0 &&
+                    searchWord &&
+                    filteredMovies?.map((movie, i) => {
+                      return <SearchDropdown movie={movie} key={i} />;
+                    })}
+                </div>
               </div>
-            </li>
-          </ul>
-        </nav>
-      </div>
+            )}
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 };
