@@ -6,7 +6,7 @@ const SearchDropdown = ({ movie }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    // Use the movie title or an appropriate identifier to construct the URL
+    // handleClick till movie info
     const movieUrl = `/movies/${movie.title}`;
     navigate(movieUrl);
   };
