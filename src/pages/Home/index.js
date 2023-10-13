@@ -1,9 +1,12 @@
 import Info from "components/Info";
 import useMovie from "hooks/useMovie";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import MovieCollection from "components/MovieCollection";
 import FirstPageMovie from "components/FirstPageMovie";
 import Loading from "components/Loading";
+import ModalComponent from "components/Modal";
+import { FcAcceptDatabase } from "react-icons/fc";
+import useFavorites from "hooks/useFavorites";
 
 const movieSample = {
   title: "Your favorite movie destination to watch top movies",
@@ -21,9 +24,8 @@ export default function Home() {
   const [fetchMoviesError, setFetchMoviesError] = useState("");
   const [movies, setMovies] = useState({});
   const [randomMovie, setRandomMovie] = useState(movieSample);
-  function getRandomArbitrary(min, max) {
-    return Math.random() * (max - min) + min;
-  }
+  const { isAdded, setIsAdded } = useFavorites();
+
   useEffect(() => {
     async function fetchMovies() {
       try {
@@ -39,9 +41,18 @@ export default function Home() {
 
   return (
     <div>
+      <div style={{ position: "relative" }}>
+        <ModalComponent isOpen={isAdded} onClose={setIsAdded}>
+          <h2>Saved!</h2>
+          <div>
+            <FcAcceptDatabase size={38} />
+          </div>
+        </ModalComponent>
+      </div>
+
       <FirstPageMovie title={randomMovie?.title} src={randomMovie?.thumbnail} />
       <div>
-        <div>
+        <div className="modalRef">
           {Object.entries(movies).map((collection) => {
             return (
               <MovieCollection
@@ -52,6 +63,7 @@ export default function Home() {
               />
             );
           })}
+
           {allMoviesLoading && <Loading />}
           {fetchMoviesError && <Info type="error">{fetchMoviesError}</Info>}
         </div>

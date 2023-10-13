@@ -1,12 +1,6 @@
 import React, { useEffect } from "react";
 import "./App.scss";
-import {
-  BrowserRouter,
-  Route,
-  Routes,
-  Navigate,
-  useLocation,
-} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import PrimaryLayout from "./components/Layout";
 import Home from "./pages/Home";
