@@ -16,6 +16,7 @@ export const FavoriteProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
   const [error, setError] = useState("");
   const [edited, setIsEdited] = useState("");
+  const [isAdded, setIsAdded] = useState(false);
 
   const fetchFavorites = () => {
     try {
@@ -37,18 +38,20 @@ export const FavoriteProvider = ({ children }) => {
             isDuplicated = true;
           }
         });
+
         if (!isDuplicated) {
           addToStorage("favorites", [...movies, movie]);
         }
       } else {
         addToStorage("favorites", [movie]);
       }
-      setIsEdited(true);
+
+      setIsAdded(true);
       setTimeout(() => {
-        setIsEdited(false);
+        setIsAdded(false);
       }, 2000);
     } catch (error) {
-      setIsEdited(false);
+      setIsAdded(false);
       console.log(error);
       setError(error);
       return false;
@@ -68,6 +71,8 @@ export const FavoriteProvider = ({ children }) => {
     error,
     fetchFavorites,
     edited,
+    isAdded,
+    setIsAdded,
   };
   return (
     <FavoriteContext.Provider value={values}>
