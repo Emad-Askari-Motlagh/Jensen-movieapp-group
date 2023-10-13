@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Jensen-movieapp-group/static/css/main.6dfce4b9.css",
+    "main.js": "/Jensen-movieapp-group/static/js/main.110413ef.js",
+    "static/js/787.f3c12312.chunk.js": "/Jensen-movieapp-group/static/js/787.f3c12312.chunk.js",
+    "index.html": "/Jensen-movieapp-group/index.html",
+    "main.6dfce4b9.css.map": "/Jensen-movieapp-group/static/css/main.6dfce4b9.css.map",
+    "main.110413ef.js.map": "/Jensen-movieapp-group/static/js/main.110413ef.js.map",
+    "787.f3c12312.chunk.js.map": "/Jensen-movieapp-group/static/js/787.f3c12312.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6dfce4b9.css",
+    "static/js/main.110413ef.js"
+  ]
+}
