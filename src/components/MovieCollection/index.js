@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function MovieCollection({ movies, collectionName }) {
   const sliderRef = useRef(null);
-  const navigate = useNavigate();
+
   const [currentTransform, setCurrentTransform] = useState(0);
   const { addFavorite } = useFavorites();
   const scroll = (direction) => {
@@ -24,7 +24,8 @@ export default function MovieCollection({ movies, collectionName }) {
   };
 
   const handleItemClick = (endPoint) => {
-    navigate(`/movies/${endPoint}`);
+    // navigate(`/movies/${endPoint}`);
+    console.log(movies);
   };
 
   // så inte samma film läggs till mer än 1 gång
