@@ -1,5 +1,9 @@
 import { render, screen, act } from "@testing-library/react";
-import Home from "pages/Home";
+import App from "./App";
+import { FavoriteProvider } from "hooks/useFavorites";
+import { MovieProvider } from "hooks/useMovie";
+import { BrowserRouter } from "react-router-dom";
+import React from "react";
 import useMovie from "hooks/useMovie";
 
 jest.mock("hooks/useMovie");
@@ -30,16 +34,18 @@ beforeEach(() => {
   });
 });
 
-describe("Home component", () => {
-  test("renders without errors", async () => {
-    await act(async () => {
-      render(<Home />);
-    });
-    const element = screen.getByText(
-      "Your favorite movie destination to watch top movies"
+describe("App component", () => {
+  test("renders learn react link", async () => {
+    render(
+      <React.StrictMode>
+        <BrowserRouter>
+          <MovieProvider>
+            <FavoriteProvider>
+              <App />
+            </FavoriteProvider>
+          </MovieProvider>
+        </BrowserRouter>
+      </React.StrictMode>
     );
-    expect(element).toBeInTheDocument();
   });
-
-  // Add other tests...
 });

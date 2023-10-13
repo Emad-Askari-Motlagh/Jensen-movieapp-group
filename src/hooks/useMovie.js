@@ -1,9 +1,8 @@
-import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import getALlMovies from "utils/getAllMovies";
-import { groupedByGenre, groupedByGenre1 } from "utils/group-by-name";
+import { groupedByGenre1 } from "utils/group-by-name";
 
-export const MovieContext = createContext(undefined);
+export const MovieContext = createContext({});
 
 export const MovieProvider = ({ children }) => {
   const [allMoviesLoading, setLoading] = useState(false);
@@ -18,7 +17,7 @@ export const MovieProvider = ({ children }) => {
       return res;
     } catch (error) {
       setLoading(false);
-      throw error;
+      return error;
     }
   }
 
@@ -27,13 +26,13 @@ export const MovieProvider = ({ children }) => {
       setLoading(true);
       const moviesData = await getALlMovies();
       const res = groupedByGenre1(moviesData, "genre");
-
+      console.log(res);
       setLoading(false);
       return res;
     } catch (error) {
       setLoading(false);
       console.log(error);
-      throw error;
+      return error;
     }
   };
 
@@ -89,7 +88,7 @@ export const MovieProvider = ({ children }) => {
 export default function useMovie() {
   const context = useContext(MovieContext);
   if (context === undefined) {
-    throw new Error("useContext must be used within an AuthProvider");
+    throw new Error("useContext must be used within an MovieProvider");
   }
   return context;
 }

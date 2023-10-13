@@ -1,14 +1,13 @@
 import React, { useRef, useState } from "react";
 import "./MoveCollection.styles.scss";
 import { BiCategory } from "react-icons/bi";
-import { useNavigate } from "react-router-dom";
 import MovieCard from "components/MovieCard";
 import { v4 as uuidv4 } from "uuid";
 import useFavorites from "hooks/useFavorites";
 
 export default function MovieCollection({ movies, collectionName }) {
   const sliderRef = useRef(null);
-  const navigate = useNavigate();
+
   const [currentTransform, setCurrentTransform] = useState(0);
   const { addFavorite } = useFavorites();
   const scroll = (direction) => {
@@ -24,14 +23,17 @@ export default function MovieCollection({ movies, collectionName }) {
   };
 
   const handleItemClick = (endPoint) => {
-    navigate(`/movies/${endPoint}`);
+    // navigate(`/movies/${endPoint}`);
+    console.log(movies);
   };
 
   // så inte samma film läggs till mer än 1 gång
-  const uniqueMovies = movies.filter(
-    (movie, index, self) =>
-      index === self.findIndex((m) => m.title === movie.title)
-  );
+  const uniqueMovies =
+    movies?.length > 0 &&
+    movies?.filter(
+      (movie, index, self) =>
+        index === self.findIndex((m) => m.title === movie.title)
+    );
 
   return (
     <div className="category-slider">
@@ -47,7 +49,10 @@ export default function MovieCollection({ movies, collectionName }) {
         </div>
 
         <div style={{ position: "relative" }}>
-          <div className="slider-btn-left" onClick={() => scroll("left")}>
+          <div
+            data-testid="scroll-left-arrow"
+            className="slider-btn-left"
+            onClick={() => scroll("left")}>
             &#10094;
           </div>
           <div
@@ -56,16 +61,20 @@ export default function MovieCollection({ movies, collectionName }) {
             style={{ transform: `translateX(${currentTransform}vw)` }}
             aria-label={`Movies in ${collectionName}`}
             role="list">
-            {uniqueMovies.map((movie) => (
-              <MovieCard
-                key={uuidv4()} // Unikt id till varje child
-                movie={movie}
-                onClick={() => handleItemClick(movie.title)}
-                addFavorite={addFavorite}
-              />
-            ))}
+            {uniqueMovies?.length > 0 &&
+              uniqueMovies.map((movie) => (
+                <MovieCard
+                  key={uuidv4()} // Unikt id till varje child
+                  movie={movie}
+                  onClick={() => handleItemClick(movie.title)}
+                  addFavorite={addFavorite}
+                />
+              ))}
           </div>
-          <div className="slider-btn-right" onClick={() => scroll("right")}>
+          <div
+            className="slider-btn-right"
+            onClick={() => scroll("right")}
+            data-testid="scroll-right-arrow">
             &#10095;
           </div>
         </div>

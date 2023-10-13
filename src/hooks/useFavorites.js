@@ -2,12 +2,12 @@ import React, { createContext, useContext, useState } from "react";
 import FetchFromStorage from "utils/fetchFromStorage";
 import addToStorage from "utils/addToStorage";
 
-const FavoriteContext = createContext(undefined);
+const FavoriteContext = createContext({});
 
 const useFavorites = () => {
   const context = useContext(FavoriteContext);
   if (context === undefined) {
-    throw new Error("useContext must be used within an AuthProvider");
+    throw new Error("useContext must be used within an useFavorites provider");
   }
   return context;
 };
