@@ -34,6 +34,7 @@ export default function Home() {
       } catch (error) {
         console.log(error);
         setFetchMoviesError("Unexpected error");
+        return error;
       }
     }
     fetchMovies();

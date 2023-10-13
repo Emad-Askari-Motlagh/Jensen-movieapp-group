@@ -7,27 +7,43 @@ const mockNavigate = jest.fn();
 
 // Mock av movies-data
 const movies = [
-  { title: "Movie 1", year: 2020, genre: "Action" },
-  { title: "Movie 2", year: 2019, genre: "Comedy" },
-  
+  {
+    actors: ["Christian Bale", "Heath Ledger", "Aaron Eckhart"],
+
+    genre: "Action, Crime, Drama",
+
+    rating: "PG-13",
+
+    synopsis:
+      "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological an…",
+
+    thumbnail:
+      "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SY1000_CR0,0,675,1000_AL_.jpg",
+
+    title: "The Dark Knight",
+
+    year: 2008,
+  },
 ];
 
 test("renders MovieCollection component", () => {
   // Renderera komponenten med mock-data och mock-funktionen för useNavigate
-  render(<MovieCollection movies={movies} collectionName="Test Collection" />, {
+  render(<MovieCollection movies={movies} collectionName="Action" />, {
     wrapper: ({ children }) => (
       <div>
         {children}
-        <button onClick={() => mockNavigate("/movies/123")}>Mock Button</button>
+        <button onClick={() => mockNavigate("/movies/The Dark Knight")}>
+          Mock Button
+        </button>
       </div>
     ),
   });
 
   // Hitta elementen i komponenten
-  const collectionNameElement = screen.getByText(/Test Collection/i);
-  const movieTitleElement = screen.getByText(/Movie 1/i);
-  const leftArrowButton = screen.getByText("◄");
-  const rightArrowButton = screen.getByText("►");
+  const collectionNameElement = screen.getByText("Action");
+  const movieTitleElement = screen.getByText("The Dark Knight");
+  const leftArrowButton = screen.getByTestId("scroll-left-arrow");
+  const rightArrowButton = screen.getByTestId("scroll-right-arrow");
 
   // Verifiera att elementen finns i dokumentet
   expect(collectionNameElement).toBeInTheDocument();
@@ -43,5 +59,5 @@ test("renders MovieCollection component", () => {
 
   // Verifiera att useNavigate-mock-funktionen har anropats när knappen "Mock Button" klickas på
   fireEvent.click(screen.getByText("Mock Button"));
-  expect(mockNavigate).toHaveBeenCalledWith("/movies/123");
+  expect(mockNavigate).toHaveBeenCalledWith("/movies/The Dark Knight");
 });
