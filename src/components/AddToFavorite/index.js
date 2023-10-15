@@ -6,9 +6,9 @@ import "./AddToFavorite.styles.scss";
 const AddToFavorites = ({ movie }) => {
   const { addFavorite, removeFavorite, favorites } = useFavorites(); // Use useFavorites hook
 
-  const isFavorite = favorites.some(
-    (favMovie) => favMovie.title === movie.title
-  );
+  const isFavorite =
+    favorites?.length > 0 &&
+    favorites.some((favMovie) => favMovie.title === movie.title);
 
   const toggleFavorite = () => {
     if (isFavorite) {

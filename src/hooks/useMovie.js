@@ -69,7 +69,7 @@ export const MovieProvider = ({ children }) => {
 
       return movies;
     } catch (error) {
-      throw error;
+      return error;
     }
   };
   const values = {
