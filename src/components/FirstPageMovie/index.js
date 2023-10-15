@@ -1,6 +1,5 @@
 import React from "react";
 import "./styles.scss";
-import Button from "components/Button";
 
 export default function FirstPageMovie({ src, title }) {
   return (

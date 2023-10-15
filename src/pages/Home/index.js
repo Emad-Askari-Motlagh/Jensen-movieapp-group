@@ -51,7 +51,12 @@ export default function Home() {
         </ModalComponent>
       </div>
 
-      <FirstPageMovie title={randomMovie?.title} src={randomMovie?.thumbnail} />
+      <FirstPageMovie
+        title={randomMovie?.title}
+        src={
+          "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_QL75_UX380_CR0,4,380,562_.jpg"
+        }
+      />
       <div>
         <div className="modalRef">
           {Object.entries(movies).map((collection) => {

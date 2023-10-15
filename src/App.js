@@ -6,6 +6,7 @@ import PrimaryLayout from "./components/Layout";
 import Home from "./pages/Home";
 import Movie from "pages/Movie";
 import FavoriteMovies from "./pages/FavoriteMovies";
+import Error404 from "components/Error404";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/movies/:movie" element={<Movie />} />
           <Route path="/favorites" element={<FavoriteMovies />} />
-          <Route path="*" element={<p>There's nothing here: 404!</p>} />
+          <Route path="*" element={<Error404 />} />
         </Route>
       </Routes>
     </div>
